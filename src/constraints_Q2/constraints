@@ -1,0 +1,84 @@
+#using the database
+USE School;
+
+#Creating a table with not null constraint
+CREATE TABLE agent_details(
+agent_code CHAR(6) NOT NULL,
+agent_name CHAR(25) NOT NULL,
+working_area CHAR(25) NOT NULL
+);
+SELECT * FROM agent_details;
+
+#Displaying the details of the table
+EXEC sp_help agent_details;
+
+# Creating table with not null and unique constraint
+CREATE TABLE order_details(
+ord_num DEC(6) NOT NULL UNIQUE,
+ord_amount DEC(12,2),
+ord_date DATE NOT NULL,
+cust_code CHAR(6) NOT NULL,
+agent_code CHAR(6) NOT NULL
+);
+SELECT * FROM order_details;
+
+#Displaying the details about constraint on columns
+EXEC sp_helpconstraint order_details;
+
+# Creating table with not null and unique constraint on two columns
+CREATE TABLE agent_details1(
+agent_code CHAR(6) NOT NULL,
+agent_name CHAR(25) NOT NULL,
+working_area CHAR(25) NOT NULL,
+commission DEC(5,2)
+CONSTRAINT unique_columns UNIQUE (agent_code,agent_name)
+);
+SELECT * FROM agent_details1;
+
+#Displaying the details about constraint on columns
+EXEC sp_helpconstraint agent_details1;
+
+
+# Creating table with not null and unique constraint on multiple columns
+CREATE TABLE customer_details(
+cust_code CHAR(6) NOT NULL,
+cust_name CHAR(25) NOT NULL,
+cust_city CHAR(25) NOT NULL,
+grade INT,
+agent_code CHAR(6) NOT NULL
+CONSTRAINT u_columns UNIQUE (cust_code,agent_code)
+);
+SELECT * FROM customer_details;
+
+#Displaying the details about constraint on columns
+EXEC sp_helpconstraint customer_details;
+
+# Creating table with not null and check constraint
+CREATE TABLE agent_details2(
+agent_code CHAR(6) NOT NULL,
+agent_name CHAR(25) NOT NULL,
+working_area CHAR(25) NOT NULL,
+commission INTEGER CHECK(commission<1)
+);
+SELECT * FROM agent_details2;
+
+#Adding check constraint on multiple columns and using IN operator
+ALTER TABLE agent_details2
+ADD CONSTRAINT ck_columns CHECK (commission<1 AND working_area IN('London','brisban','chennai','mumbai'))
+
+#Displaying the details about constraint on columns
+EXEC sp_helpconstraint agent_details2;
+
+#Creating table with check constraint on multiple columns,also using AND OR operator
+CREATE TABLE agent_details3(
+agent_code CHAR(6) NOT NULL,
+agent_name CHAR(25) NOT NULL,
+working_area CHAR(25) NOT NULL,
+commission DEC(8,2),
+CONSTRAINT CK_c1w1 CHECK (
+        (commission < 0.14 AND working_area = 'London') OR
+        (commission < 0.15 AND working_area = 'Mumbai') OR
+        (commission < 0.13 AND working_area = 'New York'))
+);
+SELECT * FROM agent_details3;
+
