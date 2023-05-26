@@ -1,0 +1,49 @@
+#use database
+USE School
+
+#Creating a salesman table in which salesman_id column should be auto increment and start from 5001.
+CREATE TABLE salesman(
+salesman_id INT NOT NULL IDENTITY(5001,1) PRIMARY KEY,
+name VARCHAR(50),
+city VARCHAR(50),
+commission DEC(8,2)
+);
+
+#setting the identity insert property to on so that values can be inserted.
+SET IDENTITY_INSERT salesman ON
+
+#Inserting records in salesman table
+INSERT INTO salesman (salesman_id,name,city,commission) VALUES(5001,'James Hoog','New York',0.15);
+INSERT INTO salesman (salesman_id,name,city,commission) VALUES(5002,'Nail Knite','Paris',0.13);
+INSERT INTO salesman (salesman_id,name,city,commission) VALUES(5005,'Pit Alex','London',0.11);
+INSERT INTO salesman (salesman_id,name,city,commission) VALUES(5006,'Mc Lyon','Paris',0.14);
+INSERT INTO salesman (salesman_id,name,city,commission) VALUES(5007,'Paul Adam','Paris',0.13);
+INSERT INTO salesman (salesman_id,name,city,commission) VALUES(5003,'Lauson Hen','San Jose',0.12);
+
+#Wrote SQL query to display all the information from the salesman table
+SELECT * FROM salesman;
+
+#Wrote SQL query to display distinct city from the salesman table
+SELECT DISTINCT city FROM salesman;
+
+#Wrote SQL query to display all distinct rows from the salesman table
+SELECT DISTINCT * FROM salesman;
+
+#Wrote SQL query to display distinct name and city from salesman table
+SELECT DISTINCT name,city FROM salesman;
+
+#Wrote SQL query to display all records but city should be "Paris"
+SELECT * FROM salesman WHERE city = 'Paris';
+
+#Wrote SQL query to display all records but city should be "Paris" and commission should be greater than 0.14
+SELECT * FROM salesman WHERE city = 'Paris'
+AND
+(commission > 0.14);
+
+#Wrote SQL query to display all records from salesman table but commission column should be ascending order
+SELECT * FROM salesman
+ORDER BY commission ASC;
+
+#Wrote SQL query to display all records except San Jose city
+SELECT * FROM salesman
+WHERE city NOT IN('San Jose');
