@@ -1,0 +1,38 @@
+#Creating a database with a name School using query
+CREATE DATABASE School;
+USE School;
+
+#Creating a simple table Locations including columns country_id,country_name and region_id.
+CREATE TABLE Locations(
+country_id INT,
+country_name VARCHAR(100),
+region_id INT
+);
+
+#Renaming the table Locations to Locations_new
+exec sp_rename Locations,Locations_new;
+SELECT * FROM Locations_new;
+
+#Adding a column region_name to the table Locations_new
+ALTER TABLE Locations_new ADD region_name VARCHAR(50);
+
+#Adding a column ID as the first column of the table Locations_new.
+ALTER TABLE Locations_new ADD ID INT;
+SELECT
+	ID,
+	COUNTRY_ID,
+	COUNTRY_NAME,
+	REGION_ID,
+	REGION_NAME
+FROM Locations_new;
+
+#Adding a column state_province after region_id to the table Locations_new.
+ALTER TABLE Locations_new ADD state_province VARCHAR(100);
+SELECT
+	ID,
+	COUNTRY_ID,
+	COUNTRY_NAME,
+	REGION_ID,
+	STATE_PROVINCE,
+	REGION_NAME
+FROM Locations_new;
