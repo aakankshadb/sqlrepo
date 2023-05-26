@@ -5,3 +5,6 @@
 * Written a SQL statement to add a column ID as the first column of the table Locations_news. 
 * Written a SQL statement to add a column state_province after region_id to the table Locations_new. 
 
+## Adding Constraints ##
+*
+
