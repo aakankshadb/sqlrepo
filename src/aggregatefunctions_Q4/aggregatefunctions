@@ -1,0 +1,48 @@
+USE AdventureWorksDW2019
+
+#Wrote a SQL query to sort the LastName in ascending order and show that LastName column as first column from DimCustomer table
+USE AdventureWorksDW2019;
+SELECT
+LastName,
+CustomerKey,
+GeographyKey,
+CustomerAlternateKey,
+Title,
+FirstName,
+MiddleName,
+NameStyle,
+BirthDate,
+MaritalStatus,
+Suffix,
+Gender,
+EmailAddress,
+YearlyIncome,
+TotalChildren,
+NumberChildrenAtHome,
+EnglishEducation,
+SpanishEducation,
+FrenchEducation,
+EnglishOccupation,
+SpanishOccupation,
+FrenchOccupation,
+HouseOwnerFlag,
+NumberCarsOwned,
+AddressLine1,
+AddressLine2,
+Phone,
+DateFirstPurchase,
+CommuteDistance
+
+FROM DimCustomer
+ORDER BY LastName ASC;
+
+#Wrote a SQL query to show top 20 Products from DimProduct Table
+SELECT TOP 20 * FROM DimProduct ;
+
+#Wrote A SQL query to show 50 percentage of customers from DimCustomer table
+SELECT TOP 50 PERCENT * FROM DimCustomer;
+
+#Wrote a SQL query to find Minimum and Maximum yearly income from DimCustomer Table.
+SELECT MIN(YearlyIncome) AS Minimum_Income,MAX(YearlyIncome) AS Maximum_Income FROM DimCustomer;
+
+
