@@ -43,3 +43,4 @@ FirstName,
 BirthDate
 FROM DimCustomer
 WHERE Birthdate BETWEEN '1980-01-01' AND '1985-12-31';
+
